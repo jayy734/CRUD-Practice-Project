@@ -17,25 +17,45 @@ namespace CRUD_Practice_Project
         {
             InitializeComponent();
         }
+        private void Form1_Load(object sender, EventArgs e)
+        {
+            LoadRecord();
+        }
         private void LoadRecord()
         {
-            dataGridView1.Rows.Clear();
+            
             SqlConnection con = new SqlConnection("Data Source=jayy\\sqlexpress;Initial Catalog=\"CRUD Practice Project\";Integrated Security=True");
             con.Open();
             SqlCommand cmd = new SqlCommand("select * from crud", con);
-            cmd.ExecuteReader();
-            while (cmd.ExecuteReader().Read())
-            {
-                dataGridView1.Rows.Add(dataGridView1.Rows.Count + 1, "@id".ToString(), "@first_name".ToString());
-            }
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            dataGridView1.DataSource = dt;
+            
+            
+            con.Close();
 
         }
+        public void clear()
+        {
+            tbAge.Clear();
+            tbID.Clear();
+            tbFirstName.Clear();
+            tbLastName.Clear();
+            tbMajor.Clear();
+        }
 
-        private void button1_Click(object sender, EventArgs e)
+ 
+        private void btn_insert_Click(object sender, EventArgs e)
         {
             SqlConnection con = new SqlConnection("Data Source=jayy\\sqlexpress;Initial Catalog=\"CRUD Practice Project\";Integrated Security=True");
             con.Open();
-            SqlCommand cmd = new SqlCommand("insert into crud values (@id,@first_name , @last_name, @major, @age)",con);
+
+
+            SqlCommand cmd = new SqlCommand("insert into crud values (@id,@first_name , @last_name, @major, @age)", con);
+            cmd.Parameters.Clear();
             cmd.Parameters.AddWithValue("@id", int.Parse(tbID.Text));
             cmd.Parameters.AddWithValue("@first_name", tbFirstName.Text);
             cmd.Parameters.AddWithValue("@last_name", tbLastName.Text);
@@ -47,19 +67,10 @@ namespace CRUD_Practice_Project
             cmd.ExecuteNonQuery();
             con.Close();
 
-            SqlDataAdapter sqlDa = new SqlDataAdapter("Select * from crud", con);
-            DataTable dt = new DataTable();
-            sqlDa.Fill(dt);
-
-            dataGridView1.DataSource = dt;
-
-
-
-
-
-
-
-
+            LoadRecord();
+            clear();
         }
+
+        
     }
 }
