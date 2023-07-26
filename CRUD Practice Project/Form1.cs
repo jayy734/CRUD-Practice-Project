@@ -71,6 +71,87 @@ namespace CRUD_Practice_Project
             clear();
         }
 
-        
+        private void button2_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source=jayy\\sqlexpress;Initial Catalog=\"CRUD Practice Project\";Integrated Security=True");
+            con.Open();
+
+
+            SqlCommand cmd = new SqlCommand("Update crud set first_name = @first_name , last_name = @last_name, major = @major , age=@age where id=@id ", con);
+
+
+            cmd.Parameters.Clear();
+            
+            cmd.Parameters.AddWithValue("@first_name", tbFirstName.Text);
+            cmd.Parameters.AddWithValue("@last_name", tbLastName.Text);
+            cmd.Parameters.AddWithValue("@major", tbMajor.Text);
+            cmd.Parameters.AddWithValue("@age", int.Parse(tbAge.Text));
+            cmd.Parameters.AddWithValue("@id", int.Parse(tbID.Text));
+
+            MessageBox.Show("Successfully Updated.");
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            LoadRecord();
+            clear();
+        }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source=jayy\\sqlexpress;Initial Catalog=\"CRUD Practice Project\";Integrated Security=True");
+            con.Open();
+
+
+            SqlCommand cmd = new SqlCommand("Delete crud where id=@id ", con);
+
+
+            cmd.Parameters.Clear();
+
+            cmd.Parameters.AddWithValue("@id", int.Parse(tbID.Text));
+
+            MessageBox.Show("Successfully Deleted.");
+
+            cmd.ExecuteNonQuery();
+            con.Close();
+
+            LoadRecord();
+            clear();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            clear();
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            tbID.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
+            tbFirstName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
+            tbLastName.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
+            tbMajor.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
+            tbAge.Text = dataGridView1.CurrentRow.Cells[5].ToString();
+            
+        }
+
+        private void tbSearch_TextChanged(object sender, EventArgs e)
+        {
+            SqlConnection con = new SqlConnection("Data Source=jayy\\sqlexpress;Initial Catalog=\"CRUD Practice Project\";Integrated Security=True");
+            
+            con.Open();
+            SqlCommand cmd = new SqlCommand("select * from crud Where id Like '%"+ tbSearch.Text+"%' OR first_name Like '%"+tbSearch.Text+"%' Or last_name Like '%"+tbSearch.Text+"%' Or major Like '%"+tbSearch.Text+"%' Or age Like '%"+ tbSearch.Text+"%'", con);
+            
+            
+            SqlDataAdapter da = new SqlDataAdapter(cmd);
+            DataTable dt = new DataTable();
+
+            da.Fill(dt);
+
+            dataGridView1.DataSource = dt;
+
+
+            con.Close();
+
+        }
     }
 }

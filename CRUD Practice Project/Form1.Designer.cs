@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_update = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.tbSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
@@ -46,39 +46,47 @@
             this.label11 = new System.Windows.Forms.Label();
             this.cRUD_Practice_ProjectDataSet = new CRUD_Practice_Project.CRUD_Practice_ProjectDataSet();
             this.cRUDPracticeProjectDataSetBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.button1 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cRUD_Practice_ProjectDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cRUDPracticeProjectDataSetBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
-            // button2
+            // btn_update
             // 
-            this.button2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
-            this.button2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(190, 338);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(118, 36);
-            this.button2.TabIndex = 57;
-            this.button2.Text = "Update";
-            this.button2.UseVisualStyleBackColor = false;
+            this.btn_update.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(224)))), ((int)(((byte)(192)))));
+            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_update.Location = new System.Drawing.Point(190, 338);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(118, 36);
+            this.btn_update.TabIndex = 57;
+            this.btn_update.Text = "Update";
+            this.btn_update.UseVisualStyleBackColor = false;
+            this.btn_update.Click += new System.EventHandler(this.button2_Click);
             // 
             // dataGridView1
             // 
+            this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.AllowUserToDeleteRows = false;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(439, 100);
             this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.ReadOnly = true;
             this.dataGridView1.RowHeadersWidth = 51;
             this.dataGridView1.RowTemplate.Height = 24;
             this.dataGridView1.Size = new System.Drawing.Size(669, 346);
             this.dataGridView1.TabIndex = 56;
+            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // tbSearch
             // 
             this.tbSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbSearch.Location = new System.Drawing.Point(548, 35);
+            this.tbSearch.Location = new System.Drawing.Point(528, 35);
             this.tbSearch.Name = "tbSearch";
-            this.tbSearch.Size = new System.Drawing.Size(212, 30);
+            this.tbSearch.Size = new System.Drawing.Size(394, 30);
             this.tbSearch.TabIndex = 55;
+            this.tbSearch.TextChanged += new System.EventHandler(this.tbSearch_TextChanged);
             // 
             // label6
             // 
@@ -202,12 +210,38 @@
             this.cRUDPracticeProjectDataSetBindingSource.DataSource = this.cRUD_Practice_ProjectDataSet;
             this.cRUDPracticeProjectDataSetBindingSource.Position = 0;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button1.Location = new System.Drawing.Point(49, 398);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(118, 36);
+            this.button1.TabIndex = 58;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // button3
+            // 
+            this.button3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.button3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.button3.Location = new System.Drawing.Point(190, 398);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(118, 36);
+            this.button3.TabIndex = 59;
+            this.button3.Text = "Delete";
+            this.button3.UseVisualStyleBackColor = false;
+            this.button3.Click += new System.EventHandler(this.button3_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1203, 480);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btn_update);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.tbSearch);
             this.Controls.Add(this.label6);
@@ -235,7 +269,7 @@
 
         #endregion
 
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.TextBox tbSearch;
         private System.Windows.Forms.Label label6;
@@ -252,6 +286,8 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.BindingSource cRUDPracticeProjectDataSetBindingSource;
         private CRUD_Practice_ProjectDataSet cRUD_Practice_ProjectDataSet;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button3;
     }
 }
 
