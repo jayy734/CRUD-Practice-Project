@@ -124,13 +124,13 @@ namespace CRUD_Practice_Project
             clear();
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            tbID.Text = dataGridView1.CurrentRow.Cells[1].Value.ToString();
-            tbFirstName.Text = dataGridView1.CurrentRow.Cells[2].Value.ToString();
-            tbLastName.Text = dataGridView1.CurrentRow.Cells[3].Value.ToString();
-            tbMajor.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
-            tbAge.Text = dataGridView1.CurrentRow.Cells[5].ToString();
+            tbID.Text = dataGridView1.CurrentRow.Cells[0].Value.ToString();
+            tbFirstName.Text = dataGridView1.CurrentRow.Cells["first_Name"].Value.ToString();
+            tbLastName.Text = dataGridView1.CurrentRow.Cells["last_name"].Value.ToString();
+            tbMajor.Text = dataGridView1.CurrentRow.Cells["major"].Value.ToString();
+            tbAge.Text = dataGridView1.CurrentRow.Cells[4].Value.ToString();
             
         }
 
@@ -153,5 +153,7 @@ namespace CRUD_Practice_Project
             con.Close();
 
         }
+
+        
     }
 }
