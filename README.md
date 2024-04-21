@@ -1,1 +1,1 @@
-a simple student information CRUD app, that helps me to practice connecting C# with SQL
+a simple student information CRUD window form app, that helps me to practice connecting C# with SQL
